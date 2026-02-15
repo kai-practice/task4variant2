@@ -4,7 +4,7 @@
 #include "../../format.h"
 #include "../Modules.h"
 bool isPerfectSquare(long num) {
-    if (num < 0) return false; // Квадрат не може бути від'ємним
+    if (num < 0) return false;
     long root = std::sqrt(num);
     return (root * root == num);
 }
