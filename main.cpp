@@ -9,10 +9,15 @@ void pause(std::string message)
 	std::cin.get();
 }
 
+static std::string program_name = "-----\nпрактична номер 2\nварінант 2\n-----";
+
 int main()
 {
     setupEnv();
-
+	if (program_name[0] != ' ') {
+		std::cout << program_name << '\n';
+		program_name = " ";
+	}
     auto& modules = getModules();
 
     std::cout << "меню(треба вписати номер програми)\n\n---------\n\n";
@@ -36,6 +41,6 @@ int main()
     	}
     }
 	pause( "\nНатисніть Enter для виходу...");
-    std::cout << "програма виконана. повернення в меню.";
+    std::cout << "програма виконана. повернення в меню.\n";
 	main();
 }
