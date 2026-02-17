@@ -20,7 +20,6 @@ static void module_init()
     int Bc = (int)b;
     int Cc = (int)c;
 
-    // Умова: A & (B | C)
     bool showReal = (Ac & (Bc | Cc)) != 0;
 
     std::cout << "\nРезультат (" << (showReal ? "Дійсний" : "Цілий") << "):\n";
@@ -31,7 +30,6 @@ static void module_init()
     for (double x = xStart; x <= xEnd + 0.00001; x += h) {
         double F;
 
-        // Формули Завдання 3
         if (a < 0) {
             F = a * x * x + b * x + c;
         } else if (a > 0 && c != 0) {
