@@ -20,7 +20,6 @@ static void module_init()
 	int Bc = (int)b;
 	int Cc = (int)c;
 
-	// Умова: НЕ (A | B | C). Операція ~ це побітове НЕ.
 	bool showReal = (~(Ac | Bc | Cc)) != 0;
 
 	std::cout << "\nРезультат (" << (showReal ? "Дійсний" : "Цілий") << "):\n";
@@ -31,7 +30,6 @@ static void module_init()
 	for (double x = xStart; x <= xEnd + 0.00001; x += h) {
 		double F;
 
-		// Формули Завдання 15
 		if (x < 0) {
 			F = -a * x * x + b;
 		} else if (x > 0 && b != 0) {
