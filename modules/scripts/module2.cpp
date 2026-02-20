@@ -15,7 +15,8 @@ static void module_init()
     double* arr = new double[n];
 
     std::cout << "Введiть елементи масиву: ";
-    for (int i = 0; i < n; i++) {
+    for (int i = 0; i < n; i++){
+        std::cout << "arr[" << i << "]:";
         std::cin >> arr[i];
     }
 
@@ -60,7 +61,7 @@ static void module_init()
     std::cout << "\n\n";
 
     double target;
-    std::cout << "Введiть задану величину (порiг) для Частини 2: ";
+    std::cout << "Введiть задану величину (порiг) для Частини 2(дробне число): ";
     std::cin >> target;
 
     double sum_less = 0;

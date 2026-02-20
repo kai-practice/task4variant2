@@ -15,6 +15,7 @@ static void module_init()
 
     std::cout << "Введiть елементи масиву: ";
     for (int i = 0; i < n; i++) {
+        std::cout << "arr[" << i << "]:";
         std::cin >> arr[i];
     }
 
