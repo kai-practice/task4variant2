@@ -1,22 +1,48 @@
 #include <iostream>
+#include <iomanip>
+#include <random>
+#include <string>
 #include "../../format.h"
 #include "../Modules.h"
+
+static double generateRandom() {
+    static std::random_device rd;
+    static std::mt19937 gen(rd());
+    std::uniform_int_distribution<> dis(-1000, 222);
+    return dis(gen) / 100.0;
+}
 
 static void module_init()
 {
     setupEnv();
-    int n;
-    std::cout << "Введiть розмiр масиву: ";
-    std::cin >> n;
+    std::cout << std::fixed << std::setprecision(2);
 
-    if (n <= 0) return;
+    int n = 0;
+    std::string input;
+    std::cout << "Введiть розмiр масиву (Enter або символ для рандому): ";
+    std::getline(std::cin, input);
+    try {
+        n = std::stoi(input);
+        if (n <= 0) throw std::invalid_argument("negative");
+    } catch (...) {
+        static std::random_device rd;
+        static std::mt19937 gen(rd());
+        n = std::uniform_int_distribution<>(3, 10)(gen);
+        std::cout << "Використано рандомний розмiр: " << n << std::endl;
+    }
 
     double* arr = new double[n];
 
-    std::cout << "Введiть елементи масиву(дробні): ";
+    std::cout << "Введiть елементи масиву (дробні) або будь-який символ/пустоту для рандому: " << std::endl;
     for (int i = 0; i < n; i++){
         std::cout << "arr[" << i << "]:";
-        std::cin >> arr[i];
+        std::getline(std::cin, input);
+        try {
+            arr[i] = std::stod(input);
+        } catch (...) {
+            arr[i] = generateRandom();
+            std::cout << " (Згенеровано рандомно: " << arr[i] << ")" << std::endl;
+        }
     }
 
     double max_mod = std::abs(arr[0]);
@@ -60,8 +86,14 @@ static void module_init()
     std::cout << "\n\n";
 
     double target;
-    std::cout << "Введiть задану величину (порiг) для Частини 2(дробне число): ";
-    std::cin >> target;
+    std::cout << "Введiть задану величину (порiг) для Частини 2 (Enter для рандому): ";
+    std::getline(std::cin, input);
+    try {
+        target = std::stod(input);
+    } catch (...) {
+        target = generateRandom();
+        std::cout << "Використано рандомний порiг: " << target << std::endl;
+    }
 
     double sum_less = 0;
     int count_less = 0;

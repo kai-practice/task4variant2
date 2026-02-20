@@ -1,6 +1,17 @@
 #include <iostream>
+#include <string>
+#include <random>
+#include <cmath>
 #include "../../format.h"
 #include "../Modules.h"
+
+static double getRandomDouble(double min, double max) {
+    static std::random_device rd;
+    static std::mt19937 gen(rd());
+    std::uniform_real_distribution<> dis(min, max);
+    double val = dis(gen);
+    return std::round(val * 100.0) / 100.0;
+}
 
 static void module_init()
 {
@@ -13,10 +24,21 @@ static void module_init()
 
     double* arr = new double[n];
 
-    std::cout << "Введiть елементи масиву(дробні): ";
+    std::cout << "Введiть елементи масиву (дробні). Якщо залишити пустим, буде згенеровано випадкове число: " << std::endl;
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
     for (int i = 0; i < n; i++) {
-        std::cout << "arr[" << i << "]:";
-        std::cin >> arr[i];
+        std::cout << "arr[" << i << "]: ";
+        std::string input;
+        std::getline(std::cin, input);
+
+        try {
+            if (input.empty()) throw std::invalid_argument("empty");
+            arr[i] = std::stod(input);
+        } catch (...) {
+            arr[i] = getRandomDouble(-100.0, 100.0);
+            std::cout << "(згенеровано: " << arr[i] << ")" << std::endl;
+        }
     }
 
     double sum_negative = 0;

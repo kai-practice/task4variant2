@@ -9,7 +9,7 @@ void pause(std::string message)
 	std::cin.get();
 }
 
-static std::string program_name = "-----\nпрактична номер 4\nварінант 2\n-----";
+static std::string program_name = "-----\nпрактична номер 4\nваріант 2\n-----";
 
 int main()
 {
