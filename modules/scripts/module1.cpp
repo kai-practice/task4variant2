@@ -5,8 +5,6 @@
 static void module_init()
 {
     setupEnv();
-    std::cout << "--- Запуск Завдання 1 ---" << std::endl;
-
     int n;
     std::cout << "Введiть розмiр масиву: ";
     std::cin >> n;
