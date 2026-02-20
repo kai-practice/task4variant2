@@ -14,7 +14,7 @@ static void module_init()
 
     double* arr = new double[n];
 
-    std::cout << "Введiть елементи масиву: ";
+    std::cout << "Введiть елементи масиву(дробні): ";
     for (int i = 0; i < n; i++){
         std::cout << "arr[" << i << "]:";
         std::cin >> arr[i];
